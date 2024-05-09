@@ -11,13 +11,13 @@ class AlphaSlide extends HTMLElement {
     obj.length = slides.length;
     return obj;
   }
-
   static _sas(parent, index){
     const slides = Array.from(parent.querySelectorAll('alpha-slide'));
     slides.forEach(slide => {
       slide.classList.remove('alp-slide--active');
     });
     slides[index].classList.add('alp-slide--active');
+    return slides[index];
   }
 }
 if(!customElements.get('alpha-slide')) customElements.define('alpha-slide', AlphaSlide);
@@ -42,12 +42,26 @@ class AlphaArrow extends HTMLElement {
     }
   }
   _ps(){
-    AlphaSlide._sas(this.slider, this.slidesData.prevIndex);
+    const currSlide = AlphaSlide._sas(this.slider, this.slidesData.prevIndex);
+    this._nxts(currSlide, this.dataset.arrow);
   }
   _ns(){
-    AlphaSlide._sas(this.slider, this.slidesData.nextIndex);
+    const currSlide = AlphaSlide._sas(this.slider, this.slidesData.nextIndex);
+    this._nxts(currSlide, this.dataset.arrow);
   }
-
+  _nxts(slide, direction){
+    if(direction === 'prev'){
+      const left = slide.offsetLeft;
+      const track = this.slider.querySelector('.alp-track');
+      track.scrollLeft = left;
+    }
+    if(direction === 'next'){
+      const bounds = slide.getBoundingClientRect();
+      const left = bounds.left;
+      const track = this.slider.querySelector('.alp-track');
+      track.scrollLeft += left;
+    }
+  }
   static setStatuses(button, disabled){
     if(disabled){
       button.setAttribute('aria-disabled', 'true');
