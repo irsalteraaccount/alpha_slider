@@ -51,11 +51,12 @@ class AlphaArrow extends HTMLElement {
   _nxts(slide, direction){
     const slides = Array.from(this.slider.querySelectorAll('alpha-slide'));
     const slideBounds = slides[this.slidesData.currIndex].getBoundingClientRect();
-    if(direction === 'prev'){
-      slides[this.slidesData.prevIndex].style.marginLeft = `0px`;
-    }
-    if(direction === 'next'){
-      slides[this.slidesData.currIndex].style.marginLeft = `-${slideBounds.width}px`;
+    switch(direction){
+      case 'prev':
+        slides[this.slidesData.prevIndex].style.marginLeft = `0px`;
+        break;
+      default:
+        slides[this.slidesData.currIndex].style.marginLeft = `-${slideBounds.width}px`;
     }
   }
 }

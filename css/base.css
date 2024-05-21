@@ -12,6 +12,19 @@ body {
   margin: 0;
 }
 
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
 .alp-slider {
   overflow: hidden;
 }
@@ -23,9 +36,6 @@ body {
 
 .alp-track {
   display: flex;
-  position: relative;
-  transition: left .3s ease;
-  left: 0;
 }
 
 .alp-slide {
