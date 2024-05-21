@@ -9,29 +9,29 @@
 <body>
   <div class="alp-slider">
     <div class="alp-track">
-      <alpha-slide class="alp-slide alp-slide--active" data-container=".alp-slider">
+      <alpha-slide data-index="1" class="alp-slide alp-slide--active" data-container=".alp-track">
         <div class="my-slide">
           slide 1
         </div>
       </alpha-slide>
-      <alpha-slide class="alp-slide" data-container=".alp-slider">
+      <alpha-slide data-index="2" class="alp-slide" data-container=".alp-track">
         <div class="my-slide">
           slide 2
         </div>
       </alpha-slide>
-      <alpha-slide class="alp-slide" data-container=".alp-slider">
+      <alpha-slide data-index="3" class="alp-slide" data-container=".alp-track">
         <div class="my-slide">
           slide 3
         </div>
       </alpha-slide>
     </div>
     <div>
-      <alpha-arrow data-slider=".alp-slider" data-arrow="prev">
+      <alpha-arrow data-slider=".alp-slider" data-container=".alp-track" data-arrow="prev">
         <button type="button">
           previous slide
         </button>
       </alpha-arrow>
-      <alpha-arrow data-slider=".alp-slider" data-arrow="next">
+      <alpha-arrow data-slider=".alp-slider" data-container=".alp-track" data-arrow="next">
         <button type="button">
           next slide
         </button>

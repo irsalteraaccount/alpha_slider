@@ -20,7 +20,6 @@ class AlphaSlide extends HTMLElement {
     return slides[index];
   }
 }
-if(!customElements.get('alpha-slide')) customElements.define('alpha-slide', AlphaSlide);
 class AlphaArrow extends HTMLElement {
   constructor() {
     super();
@@ -50,28 +49,14 @@ class AlphaArrow extends HTMLElement {
     this._nxts(currSlide, this.dataset.arrow);
   }
   _nxts(slide, direction){
+    const slides = Array.from(this.slider.querySelectorAll('alpha-slide'));
+    const slideBounds = slides[this.slidesData.currIndex].getBoundingClientRect();
     if(direction === 'prev'){
-      const left = slide.offsetLeft;
-      const track = this.slider.querySelector('.alp-track');
-      track.scrollLeft = left;
+      slides[this.slidesData.prevIndex].style.marginLeft = `0px`;
     }
     if(direction === 'next'){
-      const bounds = slide.getBoundingClientRect();
-      const left = bounds.left;
-      const track = this.slider.querySelector('.alp-track');
-      track.scrollLeft += left;
+      slides[this.slidesData.currIndex].style.marginLeft = `-${slideBounds.width}px`;
     }
-  }
-  static setStatuses(button, disabled){
-    if(disabled){
-      button.setAttribute('aria-disabled', 'true');
-      button.setAttribute('disabled', '');
-      button.classList.add('disabled');
-      return;
-    }
-    button.removeAttribute('aria-disabled');
-    button.removeAttribute('disabled');
-    button.classList.remove('disabled');
   }
 }
 if(!customElements.get('alpha-slide')) customElements.define('alpha-slide', AlphaSlide);

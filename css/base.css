@@ -12,15 +12,33 @@ body {
   margin: 0;
 }
 
+.alp-slider {
+  overflow: hidden;
+}
+
+.alp-slider,
+.alp-slide {
+  width: 100%;
+}
+
 .alp-track {
-  overflow-x: hidden;
   display: flex;
-  cursor: grab;
-  scroll-behavior: smooth;
+  position: relative;
+  transition: left .3s ease;
+  left: 0;
 }
 
 .alp-slide {
+  display: block;
   flex-shrink: 0;
-  width: 100%;
   height: 150px;
+  transition: margin-left .3s ease;
+}
+
+.alp-slide:nth-child(1) {
+  width: 300px;
+}
+
+.alp-slide:nth-child(2) {
+  width: 600px;
 }
