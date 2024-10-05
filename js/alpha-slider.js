@@ -4,9 +4,6 @@ class NewWaySlider extends HTMLElement {
     this.track = this.querySelector('.nw_track');
     this.slides = this.querySelectorAll('.nw_slide');
     this.nwLeft = 0;
-    this.next = this.onNextSlide.bind(this);
-    this.prev = this.onPrevSlide.bind(this);
-    this.addEventListener('click', this.prev);
   }
 
   onNextSlide(){
@@ -55,4 +52,32 @@ class NewWaySlider extends HTMLElement {
     return width;
   }
 }
+
+class NewWaySliderArrows extends HTMLElement {
+  constructor() {
+    super();
+    this.button = this.querySelector('button');
+    this.click = this.onClick.bind(this);
+    this.button.addEventListener('click', this.click);
+  }
+
+  onClick(event){
+    event.preventDefault();
+    const slider = document.querySelector(this.dataset.ref);
+    if(!slider) return;
+    const behave = this.dataset.case;
+
+    switch (behave) {
+      case 'prev':
+        slider.onNextSlide();
+        break;
+      case 'next':
+        slider.onPrevSlide();
+        break;
+      default:
+        break;
+    }
+  }
+}
 if(!customElements.get('nw-slider')) customElements.define('nw-slider', NewWaySlider);
+if(!customElements.get('nw-arrow')) customElements.define('nw-arrow', NewWaySliderArrows);

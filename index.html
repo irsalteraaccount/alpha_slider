@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="container">
-    <nw-slider>
+    <nw-slider id="mango">
       <div class="nw_wrapper">
         <div class="nw_track">
           <div class="nw_slide nw_slide--active">
@@ -25,6 +25,12 @@
           </div>
         </div>
       </div>
+      <nw-arrow data-ref="#mango" data-case="next">
+        <button type="button">prev</button>
+      </nw-arrow>
+      <nw-arrow data-ref="#mango" data-case="prev">
+        <button type="button">next</button>
+      </nw-arrow>
     </nw-slider>
   </div>
   <script src="js/alpha-slider.js" defer></script>
